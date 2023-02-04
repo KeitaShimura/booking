@@ -21,7 +21,7 @@ $bookings = $pdo->query('SELECT * FROM bookings ORDER BY id DESC');
     <div style="text-align: center;" class="position-relative">
         <article>
             <?php if ($bookings->rowCount() === 0) { ?>
-                <h3 class="fs-3" style="text-align: center; margin: 50px 0 0 0;">予約はありません</h3>
+                <h3 class="fs-3" style="text-align: center; margin: 50px 0 0 0;">予約情報はありません</h3>
             <?php } else { ?>
                 <div class="table-responsive">
                 <table class="table" style="margin:30px auto; text-align: center; border-top: 1px solid lightgray; width:80%;" >
@@ -35,6 +35,7 @@ $bookings = $pdo->query('SELECT * FROM bookings ORDER BY id DESC');
                             <th class="" style="font-weight: bold;">開始日</th>
                             <th class="" style="font-weight: bold;">終了日</th>
                             <th class="" style="font-weight: bold;">備考</th>
+                            <th class="" style="font-weight: bold;">削除</th>
                         </tr>
                     </thead>
                     <?php while ($booking = $bookings->fetch()) : ?>
@@ -48,6 +49,8 @@ $bookings = $pdo->query('SELECT * FROM bookings ORDER BY id DESC');
                                 <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['start']); ?></td>
                                 <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['end']); ?></td>
                                 <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['memo']); ?></td>
+                                <td class="col-3" style="vertical-align: middle;"><a href="delete.php?id=<?php print($booking['id']); ?>" class="btn btn-danger">削除</a></td>
+                            </tr>
                             </tr>
                         </tbody>
                     <?php endwhile; ?>
