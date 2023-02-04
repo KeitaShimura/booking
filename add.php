@@ -1,53 +1,8 @@
 <?php
+require "db.php";
 
+$bookings = $pdo->prepare('INSERT INTO bookings SET name=?, phone=?, post_code=?, address=?, member=?, start=?, end=?, memo=?, created_at=NOW()');
+$bookings->execute(array($_POST['name'], $_POST['phone'], $_POST['post_code'], $_POST['address'], $_POST['member'], $_POST['start'], $_POST['end'], $_POST['memo']));
+
+header('Location: http://localhost/todo/');
 ?>
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-<body>
-    <div style="margin:0 auto; max-width: 1000px;">
-        <form style="margin: 100px;">
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">お名前</label>
-                <input type="text" class="form-control" id="name" placeholder="">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">電話番号</label>
-                <input type="tel" class="form-control" id="phone" placeholder="">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">郵便番号</label>
-                <input type="text" class="form-control" id="post_code" placeholder="">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">住所</label>
-                <input type="text" class="form-control" id="address" placeholder="">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">人数</label>
-                <input type="number" class="form-control" id="address" placeholder="">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">日付</label>
-                <input type="date" class="form-control" id="start" placeholder="">
-                <input type="date" class="form-control" id="end" placeholder="">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">備考</label>
-                <textarea class="form-control" id="end" rows="3"></textarea>
-            </div>
-            <div style="text-align: center;">
-                <input type="submit" class="btn btn-success" value="送信">
-                <input type="reset" class="btn btn-danger" value="リセット">
-            </div>
-        </form>
-    </div>
-</body>
-</html>
