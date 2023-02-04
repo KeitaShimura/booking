@@ -21,6 +21,8 @@
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">郵便番号</label>
                 <input type="text" class="form-control" id="post_code" name="post_code" placeholder="">
+                <button type="button" onclick="searchAddress ()">探す</button>
+                <div id="check"></div>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">住所</label>
@@ -45,5 +47,19 @@
             </div>
         </form>
     </div>
+    <script>
+        async function searchAddress() {
+            const postalCode = document.getElementById("post_code").value;
+            const url = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=' + postalCode;
+            const response = await fetch(url);
+            const data = await response.json();
+            if (!(data['results'])) {
+                document.getElementById("check").innerHTML = '郵便番号が存在しません';
+            } else {
+                const address = data['results'][0]['address1'] + data['results'][0]['address2'] + data['results'][0]['address3']
+                document.getElementById("address").value = address;
+            }
+        }
+    </script>
 </body>
 </html>
