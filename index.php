@@ -8,7 +8,7 @@ while($booking = $bookings->fetch()) {
 ?>
 
 <!DOCTYPE html>
-<html lang='en'>
+<html lang='ja'>
   <head>
     <meta charset='utf-8' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
