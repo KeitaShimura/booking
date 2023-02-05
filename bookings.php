@@ -14,7 +14,6 @@ $bookings = $pdo->query('SELECT * FROM bookings ORDER BY id DESC');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 </head>
 
@@ -40,8 +39,9 @@ $bookings = $pdo->query('SELECT * FROM bookings ORDER BY id DESC');
                                 <th class="" style="font-weight: bold;">削除</th>
                             </tr>
                         </thead>
-                        <?php while ($booking = $bookings->fetch()) : ?>
-                            <tbody>
+                        <tbody>
+                            <?php while ($booking = $bookings->fetch()) : ?>
+
                                 <tr>
                                     <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['name']); ?></td>
                                     <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['phone']); ?></td>
@@ -52,10 +52,11 @@ $bookings = $pdo->query('SELECT * FROM bookings ORDER BY id DESC');
                                     <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['end']); ?></td>
                                     <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['memo']); ?></td>
                                     <!-- <td class="col-3" style="vertical-align: middle;"><a href="delete.php?id=<?php print($booking['id']); ?>" class="btn btn-danger">削除</a></td> -->
-                                    <td class="col-3" style="vertical-align: middle;"><a class="btn btn-danger" onclick="deleteData(<?php print($booking['id']); ?>)">削除</a></td>
+                                    <td id="delete_button" class="col-3" style="vertical-align: middle;"><a class="btn btn-danger" onclick="deleteData(<?php print($booking['id']); ?>)">削除</a></td>
                                 </tr>
-                            </tbody>
-                        <?php endwhile; ?>
+
+                            <?php endwhile; ?>
+                        </tbody>
                     </table>
                 </div>
             <?php } ?>
@@ -64,26 +65,23 @@ $bookings = $pdo->query('SELECT * FROM bookings ORDER BY id DESC');
     <script>
         function deleteData(id) {
             var delete_url = "delete.php?id=" + id;
-            $.ajax({
-                    url: delete_url,
-                    type: "delete",
-                    data: {
-                        id: id,
-                    }
-                })
-                .done(function() {
-                    // var deleteContent = "#content" + id;
+            var target = document.getElementById('delete_button');
+            var parent = target.parentNode;
 
-                    // $(deleteContent).remove(); // 投稿削除
-                    clickEle.parents('tr').remove();
-                })
-                .fail(function(jqXHR, textStatus, errorThrown) {
-                    alert("error!");
-                    console.log("jqXHR          : " + jqXHR.status);
-                    console.log("textStatus     : " + textStatus);
-                    console.log("errorThrown    : " + errorThrown.message);
-                })
-            return true;
+            var xhr = new XMLHttpRequest();
+
+            xhr.open(
+                "DELETE",
+                delete_url,
+                id
+            );
+            xhr.send();
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    parent.remove();
+                }
+            }
         };
     </script>
 </body>
