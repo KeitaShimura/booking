@@ -10,7 +10,7 @@
 </head>
 <body>
     <div style="margin:0 auto; max-width: 1000px;">
-        <form name="contact" method="post" action="add.php" style="margin: 100px;">
+        <form name="contact" method="post" action="store.php" style="margin: 100px;">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">お名前</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="">
