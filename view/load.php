@@ -9,8 +9,13 @@ foreach ($bookings as $booking) {
     $data[] = array(
         'id' => $booking['id'],
         'title' => $booking['name'],
+        'phone' => $booking['phone'],
+        'post_code' => $booking['post_code'],
+        'address' => $booking['address'],
+        'member' => $booking['member'],
         'start' => $booking['start'],
         'end' => $booking['end'],
+        'memo' => $booking['memo'],
     );
 }
 

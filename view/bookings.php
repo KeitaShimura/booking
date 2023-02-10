@@ -1,4 +1,4 @@
-<?PHP
+<?php
 require_once "../config/db.php";
 require_once "../model/Booking.php";
 require_once "../controller/BookingController.php";
@@ -24,7 +24,7 @@ $bookings = $obj->index();
     <h1 class="fs-1" style="margin: 50px 0 0 40px;">予約情報一覧</h1>
     <div style="text-align: center;" class="position-relative">
         <article>
-                <div class="table-responsive">
+            <div class="table-responsive">
                 <?php if ($bookings) : ?>
                     <table class="table" style="margin:30px auto; text-align: center; border-top: 1px solid lightgray; width:80%;">
                         <thead style="height: 50px;">
@@ -41,7 +41,7 @@ $bookings = $obj->index();
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($bookings as $booking) : ?>
+                            <?php foreach ($bookings as $booking) : ?>
 
                                 <tr>
                                     <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['name']); ?></td>
@@ -55,13 +55,13 @@ $bookings = $obj->index();
                                     <td id="delete_button" class="col-3" style="vertical-align: middle;"><a class="btn btn-danger" onclick="deleteData(<?php print($booking['id']); ?>)">削除</a></td>
                                 </tr>
 
-                                <?php endforeach; ?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <?php else : ?>
-                    <h3 class="fs-3" style="text-align: center; margin: 50px 0 0 0;">TODOはありません</h3>
+                <?php else : ?>
+                    <h3 class="fs-3" style="text-align: center; margin: 50px 0 0 0;">予約情報はありません</h3>
                 <?php endif; ?>
-                </div>
+            </div>
         </article>
     </div>
     <script>

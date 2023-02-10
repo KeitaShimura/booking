@@ -31,6 +31,11 @@ class BookingController {
         return header("Location: ../view/bookings.php");
     }
 
+    public function show($id)
+    {
+        return $this->model->show($id);
+    }
+
     public function delete($id)
     {
         // $_SESSION['status'] = "TODOを削除しました。";
