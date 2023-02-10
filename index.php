@@ -16,7 +16,7 @@
                 initialView: 'dayGridMonth',
                 locale: 'ja',
                 events: 'view/load.php',
-                eventClick: (e) => { // イベントのクリックイベント
+                eventClick: (e) => {
                     modal.style.display = 'block';
                 },
             });

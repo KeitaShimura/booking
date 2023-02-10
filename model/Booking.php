@@ -34,4 +34,16 @@ class Booking
             return false;
         }
     }
+
+    public function delete($id)
+    {
+        $statement = $this->PDO->prepare("DELETE FROM bookings WHERE id = :id");
+        $statement->bindParam(":id", $id);
+
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

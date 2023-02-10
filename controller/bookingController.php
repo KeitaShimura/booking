@@ -28,6 +28,13 @@ class BookingController {
 
         $this->model->add($data);
         // $_SESSION['status'] = "TODOを作成しました。";
-        // return header("Location: ../index.php");
+        return header("Location: ../view/bookings.php");
+    }
+
+    public function delete($id)
+    {
+        // $_SESSION['status'] = "TODOを削除しました。";
+        $this->model->delete($id);
+        return header("Location: ../view/bookings.php");
     }
 }

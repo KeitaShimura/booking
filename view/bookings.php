@@ -2,6 +2,7 @@
 require_once "../config/db.php";
 require_once "../model/Booking.php";
 require_once "../controller/BookingController.php";
+
 $obj = new BookingController();
 $bookings = $obj->index();
 
@@ -51,7 +52,6 @@ $bookings = $obj->index();
                                     <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['start']); ?></td>
                                     <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['end']); ?></td>
                                     <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['memo']); ?></td>
-                                    <!-- <td class="col-3" style="vertical-align: middle;"><a href="delete.php?id=<?php print($booking['id']); ?>" class="btn btn-danger">削除</a></td> -->
                                     <td id="delete_button" class="col-3" style="vertical-align: middle;"><a class="btn btn-danger" onclick="deleteData(<?php print($booking['id']); ?>)">削除</a></td>
                                 </tr>
 
