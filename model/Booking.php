@@ -11,8 +11,9 @@ class Booking
 
     public function index()
     {
-        $statement = $this->PDO->prepare("SELECT * FROM bookings");
-        return ($statement->execute()) ? $statement->fetchAll() : false;
+        $statement = $this->PDO->prepare("SELECT * FROM bookings ORDER BY id");
+        $statement->execute();
+        return $statement->fetchAll();
     }
 
     public function add($data)
