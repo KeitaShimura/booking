@@ -43,7 +43,7 @@ class BookingController
         if (empty($_POST['name'])) {
             $_SESSION['status'] = "名前を入力してください。";
             return header("Location: add.php");
-            
+
         } else if (!preg_match("/^(0{1}\d{1,4}-{0,1}\d{1,4}-{0,1}\d{4})$/", $_POST['phone'])) {
             $_SESSION['status'] = "電話番号を正しい形式で入力してください。";
             return header("Location: add.php");
@@ -70,7 +70,7 @@ class BookingController
 
         } else if (empty($_POST['end'])){
             $_SESSION['status'] = "予約終了日を入力してください。";
-            return header("Location: add.php");
+            return header("Location: add.php", true, 307);
 
         } else {
             $this->model->add($data);
