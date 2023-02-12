@@ -1,12 +1,13 @@
 <?php
+require_once('config.php');
 session_start();
 
 class db
 {
-    private $host = "127.0.0.1";
-    private $dbname = "booking";
-    private $user = "root";
-    private $password = "";
+    private $host = DB_HOST;
+    private $dbname = DB_NAME;
+    private $user = DB_USER;
+    private $password = DB_PASS;
     public function connection()
     {
         try {

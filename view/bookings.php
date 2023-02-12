@@ -21,15 +21,15 @@ $bookings = $obj->index();
 </head>
 
 <body>
-<div style="text-align: center; margin-top:50px;">
-    <a class="btn btn-primary" href="../index.php">カレンダー</a>
+    <div style="text-align: center; margin-top:50px;">
+        <a class="btn btn-primary" href="../index.php">カレンダー</a>
         <a class="btn btn-primary" href="add.php">登録</a>
-            </div>
+    </div>
     <h1 class="fs-1" style="margin: 50px 0 0 40px;">予約情報一覧</h1>
-    
+
     <div style="text-align: center;" class="position-relative">
         <article>
-        <?php if (isset($_SESSION['status'])) : ?>
+            <?php if (isset($_SESSION['status'])) : ?>
                 <div class="alert alert-success" role="alert">
                     <?php echo $_SESSION['status'];
                     unset($_SESSION['status']); ?>
@@ -41,30 +41,30 @@ $bookings = $obj->index();
                     <table class="table" style="margin:30px auto; text-align: center; border-top: 1px solid lightgray; width:80%;">
                         <thead style="height: 50px;">
                             <tr>
-                                <th class="" style="font-weight: bold;">お名前</th>
-                                <th class="" style="font-weight: bold;">電話番号</th>
-                                <th class="" style="font-weight: bold;">郵便番号</th>
-                                <th class="" style="font-weight: bold;">住所</th>
-                                <th class="" style="font-weight: bold;">人数</th>
-                                <th class="" style="font-weight: bold;">開始日</th>
-                                <th class="" style="font-weight: bold;">終了日</th>
-                                <th class="" style="font-weight: bold;">備考</th>
-                                <th class="" style="font-weight: bold;">削除</th>
+                                <th style="font-weight: bold;">お名前</th>
+                                <th style="font-weight: bold;">電話番号</th>
+                                <th style="font-weight: bold;">郵便番号</th>
+                                <th style="font-weight: bold;">住所</th>
+                                <th style="font-weight: bold;">人数</th>
+                                <th style="font-weight: bold;">開始日</th>
+                                <th style="font-weight: bold;">終了日</th>
+                                <th style="font-weight: bold;">備考</th>
+                                <th style="font-weight: bold;">削除</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($bookings as $booking) : ?>
 
                                 <tr id="tr<?php print($booking['id']); ?>">
-                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['name']); ?></td>
-                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['phone']); ?></td>
-                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['post_code']); ?></td>
-                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['address']); ?></td>
-                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['member']); ?></td>
-                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['start']); ?></td>
-                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['end']); ?></td>
-                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['memo']); ?></td>
-                                    <td id="delete_button" class="col-3" style="vertical-align: middle;"><a class="btn btn-danger" onclick="deleteData(<?php print($booking['id']); ?>)">削除</a></td>
+                                    <td style="vertical-align: middle;"><?php print($booking['name']); ?></td>
+                                    <td style="vertical-align: middle;"><?php print($booking['phone']); ?></td>
+                                    <td style="vertical-align: middle;"><?php print($booking['post_code']); ?></td>
+                                    <td style="vertical-align: middle;"><?php print($booking['address']); ?></td>
+                                    <td style="vertical-align: middle;"><?php print($booking['member']); ?></td>
+                                    <td style="vertical-align: middle;"><?php print($booking['start']); ?></td>
+                                    <td style="vertical-align: middle;"><?php print($booking['end']); ?></td>
+                                    <td style="vertical-align: middle;"><?php print($booking['memo']); ?></td>
+                                    <td id="delete_button" style="vertical-align: middle;"><a class="btn btn-danger" onclick="deleteData(<?php print($booking['id']); ?>)">削除</a></td>
                                 </tr>
 
                             <?php endforeach; ?>
@@ -99,7 +99,7 @@ $bookings = $obj->index();
                     delete_message = '<div class="alert alert-success" role="alert">予約を削除しました。</div>'
                     elem.insertAdjacentHTML('afterend', delete_message);
 
-                    
+
                 }
             }
         };

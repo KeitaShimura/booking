@@ -1,9 +1,17 @@
 <?php
 
+require_once "../config/db.php";
+require_once "../model/Booking.php";
+require_once "../controller/BookingController.php";
+
+$obj = new BookingController();
+$bookings = $obj->index();
+
 session_start();
 
 $token = bin2hex(openssl_random_pseudo_bytes(24));
 $_SESSION['token'] = $token;
+
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +43,7 @@ $_SESSION['token'] = $token;
             <?php endif; ?>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">お名前</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="">
+                <input type="text" class="form-control" id="name" name="name" placeholder="" value="<?php echo $_SESSION['name'] ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">電話番号</label>

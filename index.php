@@ -27,7 +27,7 @@ $booking = $obj->show($_GET['id']);
                 locale: 'ja',
                 events: 'view/load.php',
                 eventClick: (e) => {
-                    var name = e.event.extendedProps.title;
+                    var name = e.event.title;
                     var phone = e.event.extendedProps.phone;
                     var post_code = e.event.extendedProps.post_code;
                     var address = e.event.extendedProps.address;
@@ -58,8 +58,6 @@ $booking = $obj->show($_GET['id']);
                     memo_id.textContent = memo;
 
                     modal.style.display = 'block';
-
-
                 },
             });
             calendar.render();
