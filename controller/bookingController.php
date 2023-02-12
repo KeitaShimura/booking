@@ -15,15 +15,25 @@ class BookingController {
 
     public function add()
     {
+
+        $name = htmlspecialchars(trim($_POST['name']), ENT_QUOTES);
+        $phone = htmlspecialchars(trim($_POST['phone']), ENT_QUOTES);
+        $post_code = htmlspecialchars(trim($_POST['post_code']), ENT_QUOTES);
+        $address = htmlspecialchars(trim($_POST['address']), ENT_QUOTES);
+        $member = htmlspecialchars(trim($_POST['member']), ENT_QUOTES);
+        $start = htmlspecialchars(trim($_POST['start']), ENT_QUOTES);
+        $end = htmlspecialchars(trim($_POST['end']), ENT_QUOTES);
+        $memo = htmlspecialchars(trim($_POST['memo']), ENT_QUOTES);
+
         $data = [
-            'name' => trim($_POST['name']),
-            'phone' => trim($_POST['phone']),
-            'post_code' => trim($_POST['post_code']),
-            'address' => trim($_POST['address']),
-            'member' => trim($_POST['member']),
-            'start' => trim($_POST['start']),
-            'end' => trim($_POST['end']),
-            'memo' => trim($_POST['memo']),
+            'name' => trim($name),
+            'phone' => trim($phone),
+            'post_code' => trim($post_code),
+            'address' => trim($address),
+            'member' => trim($member),
+            'start' => trim($start),
+            'end' => trim($end),
+            'memo' => trim($memo),
         ];
 
         $this->model->add($data);

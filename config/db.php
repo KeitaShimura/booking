@@ -15,8 +15,5 @@ class db
         } catch (PDOException $e) {
             return $e->getMessage();
         }
-
-        $PDO->exec('INSERT INTO bookings SET id=1, name="志村 啓太", phone="08010101010", post_code=4000000, address="東京都", member=10, start="2020-10-10", end="2020-10-10", memo="テスト", created_at="2020-10-10", updated_at="2020-10-10"');
-
     }
 }

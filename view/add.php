@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+$token = bin2hex(openssl_random_pseudo_bytes(24));
+$_SESSION['token'] = $token;
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -11,6 +19,7 @@
 <body>
     <div style="margin:0 auto; max-width: 1000px;">
         <form name="contact" method="post" action="store.php" style="margin: 100px;">
+        <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_COMPAT, 'UTF-8'); ?>">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">お名前</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="">
