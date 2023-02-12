@@ -88,7 +88,5 @@ class BookingController
     public function delete($id)
     {
         $this->model->delete($id);
-        // $_SESSION['status'] = "予約を削除しました。";
-        // return header("Location: ../view/bookings.php");
     }
 }

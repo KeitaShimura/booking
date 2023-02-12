@@ -13,7 +13,7 @@ class Booking
     {
         $statement = $this->PDO->prepare("SELECT * FROM bookings ORDER BY id");
         $statement->execute();
-        
+
         return $statement->fetchAll();
     }
 
