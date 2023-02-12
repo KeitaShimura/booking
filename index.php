@@ -19,15 +19,7 @@ $booking = $obj->show($_GET['id']);
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('modal');
-            const buttonClose = document.getElementsByClassName('modal-close')[0];
-            const name = document.getElementById('name')[0];
-            const phone = document.getElementsByClassName('name');
-            const post_code = document.getElementById('post_code')[0];
-            const address = document.getElementById('address')[0];
-            const member = document.getElementById('member')[0];
-            const start = document.getElementById('start')[0];
-            const end = document.getElementById('end')[0];
-            const memo = document.getElementById('memo')[0];
+            const buttonClose = document.getElementsByClassName('btn-close')[0];
 
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -35,13 +27,38 @@ $booking = $obj->show($_GET['id']);
                 locale: 'ja',
                 events: 'view/load.php',
                 eventClick: (e) => {
-                    var id = e.event.id;
-                    // alert(e.evegnt.descripcion);
-                    phone.textContent = "e.event.text";
-                    
-                    
+                    var name = e.event.extendedProps.title;
+                    var phone = e.event.extendedProps.phone;
+                    var post_code = e.event.extendedProps.post_code;
+                    var address = e.event.extendedProps.address;
+                    var member = e.event.extendedProps.member;
+                    var start = e.event.start;
+                    var end = e.event.end;
+                    var memo = e.event.extendedProps.memo;
+
+                    let format_start = start.getFullYear() + "-" + start.getMonth() + "-" + start.getDate();
+                    let format_end = end.getFullYear() + "-" + end.getMonth() + "-" + end.getDate();
+
+                    const title_id = document.getElementById('name');
+                    const phone_id = document.getElementById('phone');
+                    const post_code_id = document.getElementById('post_code');
+                    const address_id = document.getElementById('address');
+                    const member_id = document.getElementById('member');
+                    const start_id = document.getElementById('start');
+                    const end_id = document.getElementById('end');
+                    const memo_id = document.getElementById('memo');
+
+                    title_id.textContent = name;
+                    phone_id.textContent = phone;
+                    post_code_id.textContent = post_code;
+                    address_id.textContent = address;
+                    member_id.textContent = member;
+                    start_id.textContent = format_start;
+                    end_id.textContent = format_end;
+                    memo_id.textContent = memo;
+
                     modal.style.display = 'block';
-                    
+
 
                 },
             });
@@ -66,33 +83,31 @@ $booking = $obj->show($_GET['id']);
 
 <body>
     <div class="button" style="text-align: right; margin:10px;">
-        <a class="btn btn-success" href="view/add.php">登録</a>
-        <a class="btn btn-success" href="view/bookings.php">予約情報一覧</a>
+        <a class="btn btn-primary" href="view/add.php">登録</a>
+        <a class="btn btn-primary" href="view/bookings.php">予約情報一覧</a>
     </div>
 
     <div id='calendar'></div>
 
-
-    
     <div class="modal" tabindex="-1" id="modal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="name"></h5>
-                    <button type="button" class="modal-close" data-bs-dismiss="modal" aria-label="Close" id="modal-close">X</button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="name"></p>
-                    <p id="post_code"></p>
-                    <p id="address"></p>
-                    <p id="member"></p>
-                    <p id="start"></p>
-                    <p id="end"></p>
-                    <p id="memo"></p>
-                </div>
+                    <p>電話番号：<span id="phone"></span></p>
+                    <p>郵便番号：<span id="post_code"></span></p>
+                    <p>住所：<span id="address"></span></p>
+                    <p>人数：<span id="member"></span></p>
+                    <p>開始日：<span id="start"></span></p>
+                    <p>終了日：<span id="end"></span></p>
+                    <p>メモ：<span id="memo"></span></p>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 

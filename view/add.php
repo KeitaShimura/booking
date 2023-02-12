@@ -17,9 +17,22 @@ $_SESSION['token'] = $token;
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+
     <div style="margin:0 auto; max-width: 1000px;">
-        <form name="contact" method="post" action="store.php" style="margin: 100px;">
+    <div style="text-align: center; margin-top:50px;">
+    <a class="btn btn-primary" href="../index.php">カレンダー</a>
+        <a class="btn btn-primary" href="bookings.php">予約情報一覧</a>
+            </div>
+   
+        <form name="contact" method="post" action="store.php" style="margin:50px 100px 0 100px;">
         <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_COMPAT, 'UTF-8'); ?>">
+        <?php if (isset($_SESSION['status'])) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $_SESSION['status'];
+                    unset($_SESSION['status']); ?>
+                </div>
+
+            <?php endif; ?>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">お名前</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="">
@@ -38,7 +51,7 @@ $_SESSION['token'] = $token;
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">人数</label>
-                <input type="number" class="form-control" id="member" name="member" placeholder="">
+                <input type="number" min="1"class="form-control" id="member" name="member" placeholder="">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">日付</label>

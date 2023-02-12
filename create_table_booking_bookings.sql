@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS booking.bookings (
     post_code INT(20),
     address VARCHAR(20),
     member INT(11),
-    start DATE,
-    end DATE,
+    start VARCHAR(20),
+    end VARCHAR(20),
     memo TEXT,
     created_at DATETIME,
     updated_at DATETIME

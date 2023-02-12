@@ -21,9 +21,21 @@ $bookings = $obj->index();
 </head>
 
 <body>
+<div style="text-align: center; margin-top:50px;">
+    <a class="btn btn-primary" href="../index.php">カレンダー</a>
+        <a class="btn btn-primary" href="add.php">登録</a>
+            </div>
     <h1 class="fs-1" style="margin: 50px 0 0 40px;">予約情報一覧</h1>
+    
     <div style="text-align: center;" class="position-relative">
         <article>
+        <?php if (isset($_SESSION['status'])) : ?>
+                <div class="alert alert-success" role="alert">
+                    <?php echo $_SESSION['status'];
+                    unset($_SESSION['status']); ?>
+                </div>
+
+            <?php endif; ?>
             <div class="table-responsive">
                 <?php if ($bookings) : ?>
                     <table class="table" style="margin:30px auto; text-align: center; border-top: 1px solid lightgray; width:80%;">
@@ -43,7 +55,7 @@ $bookings = $obj->index();
                         <tbody>
                             <?php foreach ($bookings as $booking) : ?>
 
-                                <tr>
+                                <tr id="tr<?php print($booking['id']); ?>">
                                     <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['name']); ?></td>
                                     <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['phone']); ?></td>
                                     <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($booking['post_code']); ?></td>
@@ -66,9 +78,11 @@ $bookings = $obj->index();
     </div>
     <script>
         function deleteData(id) {
+            var elem = document.getElementById('InnerFrame04');
             var delete_url = "delete.php?id=" + id;
             var target = document.getElementById('delete_button');
-            var parent = target.parentNode;
+            var tr = document.getElementById('tr' + id);
+            var delete_message = document.getElementById('InnerFrame04');
 
             var xhr = new XMLHttpRequest();
 
@@ -81,7 +95,11 @@ $bookings = $obj->index();
 
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    parent.remove();
+                    tr.remove();
+                    delete_message = '<div class="alert alert-success" role="alert">予約を削除しました。</div>'
+                    elem.insertAdjacentHTML('afterend', delete_message);
+
+                    
                 }
             }
         };
