@@ -27,7 +27,7 @@ class BookingController
         $memo = htmlspecialchars(trim($_POST['memo']), ENT_QUOTES);
 
         $data = [
-            'name' => trim($name).'様',
+            'name' => trim($name) . '様',
             'phone' => trim($phone),
             'post_code' => trim($post_code),
             'address' => trim($address),
@@ -37,47 +37,51 @@ class BookingController
             'memo' => trim($memo),
         ];
 
-        $start_date = new DateTime($_POST['start']);
-        $end_date = new DateTime($_POST['end']);
-
-        if (empty($_POST['name'])) {
-            $_SESSION['status'] = "名前を入力してください。";
-            return header("Location: add.php");
-
-        } else if (!preg_match("/^(0{1}\d{1,4}-{0,1}\d{1,4}-{0,1}\d{4})$/", $_POST['phone'])) {
-            $_SESSION['status'] = "電話番号を正しい形式で入力してください。";
-            return header("Location: add.php");
-
-        } else if (!preg_match("/^(([0-9]{3}-[0-9]{4})|([0-9]{7}))$/", $_POST['post_code'])) {
-            $_SESSION['status'] = "郵便番号を半角数字7桁で入力してください。";
-            return header("Location: add.php");
-
-        } else if (empty($_POST['address'])) {
-            $_SESSION['status'] = "住所を入力してください。";
-            return header("Location: add.php");
-
-        } else if (empty($_POST['member'])) {
-            $_SESSION['status'] = "人数を入力してください。";
-            return header("Location: add.php");
-
-        } else if (empty($_POST['start'])) {
-            $_SESSION['status'] = "予約開始日を入力してください";
-            return header("Location: add.php");
-
-        } else if ($end_date < $start_date) {
-            $_SESSION['status'] = "予約終了日は予約開始日以降の日付を入力してください。";
-            return header("Location: add.php");
-
-        } else if (empty($_POST['end'])){
-            $_SESSION['status'] = "予約終了日を入力してください。";
-            return header("Location: add.php", true, 307);
-
-        } else {
-            $this->model->add($data);
+        $this->model->add($data);
 
         $_SESSION['status'] = "予約しました。";
         return header("Location: ../view/bookings.php");
+    }
+
+    public function validation($data) {
+        $error = array();
+
+        $start_date = new DateTime($data['start']);
+        $end_date = new DateTime($data['end']);
+
+        if (empty($data['name'])) {
+            $error[] = "名前を入力してください。";
         }
+
+        if (!preg_match("/^(0{1}\d{1,4}-{0,1}\d{1,4}-{0,1}\d{4})$/", $data['phone'])) {
+            $error[] = "電話番号を正しい形式で入力してください。";
+        }
+
+        if (!preg_match("/^(([0-9]{3}-[0-9]{4})|([0-9]{7}))$/", $data['post_code'])) {
+            $error[] = "郵便番号を半角数字7桁で入力してください。";
+        }
+
+        if (empty($data['address'])) {
+            $error[] = "住所を入力してください。";
+        }
+
+        if (empty($data['member'])) {
+            $error[] = "人数を入力してください。";
+        }
+
+        if (empty($data['start'])) {
+            $error[] = "予約開始日を入力してください";
+        }
+
+        if ($end_date < $start_date) {
+            $error[] = "予約終了日は予約開始日以降の日付を入力してください。";
+        }
+
+        if (empty($data['end'])) {
+            $error[] = "予約終了日を入力してください。";
+        }
+
+        return $error;
     }
 
     public function show($id)

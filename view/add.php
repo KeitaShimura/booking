@@ -1,8 +1,8 @@
 <?php
 
-require_once "../config/db.php";
-require_once "../model/Booking.php";
-require_once "../controller/BookingController.php";
+require_once(__DIR__."/../config/db.php");
+require_once(__DIR__."/../model/Booking.php");
+require_once(__DIR__."/../controller/BookingController.php");
 
 $obj = new BookingController();
 $booking = $obj->index();
@@ -34,41 +34,43 @@ $_SESSION['token'] = $token;
    
         <form name="contact" method="post" action="store.php" style="margin:50px 100px 0 100px;">
         <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_COMPAT, 'UTF-8'); ?>">
-        <?php if (isset($_SESSION['status'])) : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?php echo $_SESSION['status'];
-                    unset($_SESSION['status']); ?>
-                </div>
-
-            <?php endif; ?>
+        <?php if( !empty($error) ): ?>
+	<ul class="error_list">
+	<?php foreach( $error as $value ): ?>
+		<li><?php echo $value; ?></li>
+	<?php endforeach; ?>
+	</ul>
+<?php endif; ?>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">お名前</label>
-                <input type="text" class="form-control" name="name" value="<?php echo $_POST['name'] ?>">
+                <input required type="text" class="form-control" name="name" value="<?php echo $_POST['name'] ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">電話番号</label>
-                <input type="tel" class="form-control" id="phone" name="phone" placeholder="">
+                <input required type="tel" class="form-control" id="phone" name="phone" value="<?php echo $_POST['phone'] ?>">
+                <p style="text-align: center;">例: 080-0000-0000 / 08011112222</p>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">郵便番号</label>
-                <input type="text" class="form-control" id="post_code" name="post_code" placeholder="">
+                <input required type="text" class="form-control" id="post_code" name="post_code" value="<?php echo $_POST['post_code'] ?>">
+                <p style="text-align: center;">例: 000-0000 / 1112222</p>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">住所</label>
-                <input type="text" class="form-control" id="address" name="address" placeholder="">
+                <input required type="text" class="form-control" id="address" name="address" value="<?php echo $_POST['address'] ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">人数</label>
-                <input type="number" min="1"class="form-control" id="member" name="member" placeholder="">
+                <input required type="number" min="1" class="form-control" id="member" name="member" value="<?php echo $_POST['member'] ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">日付</label>
-                <input type="date" class="form-control" id="start" name="start" placeholder="">
-                <input type="date" class="form-control" id="end" name="end" placeholder="">
+                <input required type="date" class="form-control" id="start" name="start" value="<?php echo $_POST['start'] ?>">
+                <input required type="date" class="form-control" id="end" name="end" value="<?php echo $_POST['end'] ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">備考</label>
-                <textarea class="form-control" id="memo" name="memo" rows="3"></textarea>
+                <textarea required class="form-control" id="memo" name="memo" rows="3"><?php echo $_POST['memo'] ?></textarea>
             </div>
             <div style="text-align: center;">
                 <input type="submit" class="btn btn-success" value="送信">
