@@ -1,8 +1,8 @@
 <?php
 
-require_once(__DIR__."/../config/db.php");
-require_once(__DIR__."/../model/Booking.php");
-require_once(__DIR__."/../controller/BookingController.php");
+require_once(__DIR__ . "/../config/db.php");
+require_once(__DIR__ . "/../model/Booking.php");
+require_once(__DIR__ . "/../controller/BookingController.php");
 
 $obj = new BookingController();
 $booking = $obj->index();
@@ -24,36 +24,37 @@ $_SESSION['token'] = $token;
     <title>Booking - 登録 - </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
+
 <body>
 
     <div style="margin:0 auto; max-width: 1000px;">
-    <div style="text-align: center; margin-top:50px;">
-    <a class="btn btn-primary" href="../index.php">カレンダー</a>
-        <a class="btn btn-primary" href="bookings.php">予約情報一覧</a>
-            </div>
-   
+        <div style="text-align: center; margin-top:50px;">
+            <a class="btn btn-primary" href="../index.php">カレンダー</a>
+            <a class="btn btn-primary" href="bookings.php">予約情報一覧</a>
+        </div>
+
         <form name="contact" method="post" action="store.php" style="margin:50px 100px 0 100px;">
-        <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_COMPAT, 'UTF-8'); ?>">
-        <?php if( !empty($error) ): ?>
-	<ul class="error_list">
-	<?php foreach( $error as $value ): ?>
-		<li><?php echo $value; ?></li>
-	<?php endforeach; ?>
-	</ul>
-<?php endif; ?>
+            <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_COMPAT, 'UTF-8'); ?>">
+            <?php foreach ($_SESSION['status'] as $error) : ?>
+                <?php if (isset($error)) : ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $error;
+                        unset($error); ?>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">お名前</label>
                 <input required type="text" class="form-control" name="name" value="<?php echo $_POST['name'] ?>">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">電話番号</label>
+                <label for="exampleFormControlInput1" class="form-label">電話番号 （例: 080-0000-0000 / 08011112222）</label>
                 <input required type="tel" class="form-control" id="phone" name="phone" value="<?php echo $_POST['phone'] ?>">
                 <p style="text-align: center;">例: 080-0000-0000 / 08011112222</p>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">郵便番号</label>
+                <label for="exampleFormControlInput1" class="form-label">郵便番号 （例: 000-0000 / 1112222）</label>
                 <input required type="text" class="form-control" id="post_code" name="post_code" value="<?php echo $_POST['post_code'] ?>">
-                <p style="text-align: center;">例: 000-0000 / 1112222</p>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">住所</label>
@@ -70,7 +71,7 @@ $_SESSION['token'] = $token;
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">備考</label>
-                <textarea required class="form-control" id="memo" name="memo" rows="3"><?php echo $_POST['memo'] ?></textarea>
+                <textarea class="form-control" id="memo" name="memo" rows="3"><?php echo $_POST['memo'] ?></textarea>
             </div>
             <div style="text-align: center;">
                 <input type="submit" class="btn btn-success" value="送信">
@@ -91,4 +92,5 @@ $_SESSION['token'] = $token;
         })
     </script>
 </body>
+
 </html>

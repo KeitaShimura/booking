@@ -37,51 +37,46 @@ class BookingController
             'memo' => trim($memo),
         ];
 
-        $this->model->add($data);
+        $error = [];
 
-        $_SESSION['status'] = "予約しました。";
-        return header("Location: ../view/bookings.php");
-    }
+        $start_date = new DateTime($_POST['start']);
+        $end_date = new DateTime($_POST['end']);
 
-    public function validation($data) {
-        $error = array();
-
-        $start_date = new DateTime($data['start']);
-        $end_date = new DateTime($data['end']);
-
-        if (empty($data['name'])) {
-            $error[] = "名前を入力してください。";
+        if (($_POST['name'] > 30)) {
+            $error[] = "お名前を30文字以内で入力してください。";
         }
 
-        if (!preg_match("/^(0{1}\d{1,4}-{0,1}\d{1,4}-{0,1}\d{4})$/", $data['phone'])) {
+        if (!preg_match("/^(0{1}\d{1,4}-{0,1}\d{1,4}-{0,1}\d{4})$/", $_POST['phone'])) {
             $error[] = "電話番号を正しい形式で入力してください。";
         }
 
-        if (!preg_match("/^(([0-9]{3}-[0-9]{4})|([0-9]{7}))$/", $data['post_code'])) {
-            $error[] = "郵便番号を半角数字7桁で入力してください。";
+        if (!preg_match("/^(([0-9]{3}-[0-9]{4})|([0-9]{7}))$/", $_POST['post_code'])) {
+            $error[] = "郵便番号を正しい形式で入力してください。";
         }
 
-        if (empty($data['address'])) {
-            $error[] = "住所を入力してください。";
-        }
-
-        if (empty($data['member'])) {
-            $error[] = "人数を入力してください。";
-        }
-
-        if (empty($data['start'])) {
-            $error[] = "予約開始日を入力してください";
+        if (empty($_POST['address'] < 30)) {
+            $error[] = "住所を30文字以内で入力してください。";
         }
 
         if ($end_date < $start_date) {
             $error[] = "予約終了日は予約開始日以降の日付を入力してください。";
         }
 
-        if (empty($data['end'])) {
-            $error[] = "予約終了日を入力してください。";
+        if (empty($_POST['memo'] < 100)) {
+            $error[] = "メモを100文字以内で入力してください。";
         }
 
-        return $error;
+        if (count($error) > 0) {
+            $_SESSION['status'] = $error;
+            return header("Location: add.php", true, 307);
+            exit;
+        } else {
+            unset($_SESSION['errors']);
+            $this->model->add($data);
+
+            $_SESSION['status'] = "予約しました。";
+            return header("Location: ../view/bookings.php");
+        }
     }
 
     public function show($id)
