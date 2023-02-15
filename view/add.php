@@ -50,7 +50,6 @@ $_SESSION['token'] = $token;
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">電話番号 （例: 080-0000-0000 / 08011112222）</label>
                 <input required type="tel" class="form-control" id="phone" name="phone" value="<?php echo $_POST['phone'] ?>">
-                <p style="text-align: center;">例: 080-0000-0000 / 08011112222</p>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">郵便番号 （例: 000-0000 / 1112222）</label>
