@@ -47,7 +47,7 @@ $_SESSION['token'] = $token;
 
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">お名前</label>
-                <input type="text" maxlength="100" class="form-control" name="name" value="<?php echo $_POST['name'] ?>">
+                <input required type="text" maxlength="100" class="form-control" name="name" value="<?php echo $_POST['name'] ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">電話番号 （例: 080-0000-0000 / 08011112222）</label>
