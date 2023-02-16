@@ -9,5 +9,5 @@ if (empty($_SESSION['token']) || $token !== $_SESSION['token']) {
     die('投稿失敗');
 } else {
     $obj = new bookingController();
-    $obj->add();
+    $obj->store();
 }

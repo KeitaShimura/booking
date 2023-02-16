@@ -36,8 +36,13 @@ $booking = $obj->show($_GET['id']);
                     var end = e.event.end;
                     var memo = e.event.extendedProps.memo;
 
-                    let format_start = start.getFullYear() + "-" + start.getMonth() + "-" + start.getDate();
-                    let format_end = end.getFullYear() + "-" + end.getMonth() + "-" + end.getDate();
+
+                    function month(date) {
+                        return date.getMonth() + 1;
+                    }
+
+                    let format_start = start.getFullYear() + "-" + month(start) + "-" + start.getDate();
+                    let format_end = end.getFullYear() + "-" + month(end) + "-" + end.getDate();
 
                     const title_id = document.getElementById('name');
                     const phone_id = document.getElementById('phone');

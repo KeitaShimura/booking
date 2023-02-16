@@ -14,7 +14,7 @@ class BookingController
         return $this->model->index();
     }
 
-    public function add()
+    public function store()
     {
 
         $name = htmlspecialchars(trim($_POST['name']), ENT_QUOTES);
@@ -42,7 +42,7 @@ class BookingController
         $start_date = new DateTime($_POST['start']);
         $end_date = new DateTime($_POST['end']);
 
-        if (($_POST['name'] > 30)) {
+        if (mb_strlen($_POST['name']) > 30) {
             $error[] = "お名前を30文字以内で入力してください。";
         }
 
@@ -54,7 +54,7 @@ class BookingController
             $error[] = "郵便番号を正しい形式で入力してください。";
         }
 
-        if (empty($_POST['address'] < 30)) {
+        if (mb_strlen($_POST['address']) > 30) {
             $error[] = "住所を30文字以内で入力してください。";
         }
 
@@ -62,22 +62,26 @@ class BookingController
             $error[] = "予約終了日は予約開始日以降の日付を入力してください。";
         }
 
-        if (empty($_POST['memo'] < 100)) {
+        if (mb_strlen($_POST['memo']) > 100) {
             $error[] = "メモを100文字以内で入力してください。";
         }
 
         if (count($error) > 0) {
             $_SESSION['status'] = $error;
             return header("Location: add.php", true, 307);
-            exit;
+            // exit;
         } else {
-            unset($_SESSION['errors']);
-            $this->model->add($data);
+            unset($_SESSION['status']);
+            $this->model->store($data);
 
             $_SESSION['status'] = "予約しました。";
             return header("Location: ../view/bookings.php");
         }
     }
+
+    function checkCharCount(string $str, int $count): bool {
+        return  mb_strlen($str) <= $count;
+      }
 
     public function show($id)
     {

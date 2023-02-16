@@ -17,7 +17,7 @@ class Booking
         return $statement->fetchAll();
     }
 
-    public function add($data)
+    public function store($data)
     {
         $statement = $this->PDO->prepare("INSERT INTO bookings (name, phone, post_code, address, member, start, end, memo, created_at, updated_at) VALUES(:name, :phone, :post_code, :address, :member, :start, :end, :memo, NOW(), NOW())");
         $statement->bindParam(":name", $data['name']);
