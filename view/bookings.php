@@ -55,16 +55,16 @@ $bookings = $obj->index();
                         <tbody>
                             <?php foreach ($bookings as $booking) : ?>
 
-                                <tr id="tr<?php print($booking['id']); ?>">
-                                    <td style="vertical-align: middle;"><?php print($booking['name']); ?></td>
-                                    <td style="vertical-align: middle;"><?php print($booking['phone']); ?></td>
-                                    <td style="vertical-align: middle;"><?php print($booking['post_code']); ?></td>
-                                    <td style="vertical-align: middle;"><?php print($booking['address']); ?></td>
-                                    <td style="vertical-align: middle;"><?php print($booking['member']); ?></td>
-                                    <td style="vertical-align: middle;"><?php print($booking['start']); ?></td>
-                                    <td style="vertical-align: middle;"><?php print($booking['end']); ?></td>
-                                    <td style="vertical-align: middle;"><?php print($booking['memo']); ?></td>
-                                    <td id="delete_button" style="vertical-align: middle;"><a class="btn btn-danger" onclick="deleteData(<?php print($booking['id']); ?>)">削除</a></td>
+                                <tr id="tr<?php echo($booking['id']); ?>">
+                                    <td style="vertical-align: middle;"><?php echo($booking['name']); ?></td>
+                                    <td style="vertical-align: middle;"><?php echo($booking['phone']); ?></td>
+                                    <td style="vertical-align: middle;"><?php echo($booking['post_code']); ?></td>
+                                    <td style="vertical-align: middle;"><?php echo($booking['address']); ?></td>
+                                    <td style="vertical-align: middle;"><?php echo($booking['member']); ?></td>
+                                    <td style="vertical-align: middle;"><?php echo($booking['start']); ?></td>
+                                    <td style="vertical-align: middle;"><?php echo($booking['end']); ?></td>
+                                    <td style="vertical-align: middle;"><?php echo($booking['memo']); ?></td>
+                                    <td id="delete_button" style="vertical-align: middle;"><a class="btn btn-danger" onclick="deleteData(<?php echo($booking['id']); ?>)">削除</a></td>
                                 </tr>
 
                             <?php endforeach; ?>

@@ -78,28 +78,28 @@ if(isset($_POST['memo'])){
 
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">お名前</label>
-                <input required type="text" maxlength="100" class="form-control" name="name" value="<?php print($name); ?>">
+                <input required type="text" maxlength="100" class="form-control" name="name" value="<?php echo($name); ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">電話番号 （例: 080-0000-0000 / 08011112222）</label>
-                <input required type="tel" maxlength="100" class="form-control" id="phone" name="phone" value="<?php print($phone) ?>">
+                <input required type="tel" maxlength="100" class="form-control" id="phone" name="phone" value="<?php echo($phone) ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">郵便番号 （例: 000-0000 / 1112222）</label>
-                <input required type="text" maxlength="100" class="form-control" id="post_code" name="post_code" value="<?php print($post_code) ?>">
+                <input required type="text" maxlength="100" class="form-control" id="post_code" name="post_code" value="<?php echo($post_code) ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">住所</label>
-                <input required type="text" maxlength="100" class="form-control" id="address" name="address" value="<?php print($address) ?>">
+                <input required type="text" maxlength="100" class="form-control" id="address" name="address" value="<?php echo($address) ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">人数</label>
-                <input required type="number" min="1" class="form-control" id="member" name="member" value="<?php print($member) ?>">
+                <input required type="number" min="1" class="form-control" id="member" name="member" value="<?php echo($member) ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">日付</label>
-                <input required type="date"  class="form-control" id="start" name="start" value="<?php print($start) ?>">
-                <input required type="date" class="form-control" id="end" name="end" value="<?php print($end) ?>">
+                <input required type="date"  class="form-control" id="start" name="start" value="<?php echo($start) ?>">
+                <input required type="date" class="form-control" id="end" name="end" value="<?php echo($end) ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">備考</label>
