@@ -54,7 +54,7 @@ $_SESSION['token'] = $token;
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">郵便番号 （例: 000-0000 / 1112222）</label>
-                <input required type="text" maxlength="100" class="form-control" id="post_code" name="post_code>
+                <input required type="text" maxlength="100" class="form-control" id="post_code" name="post_code">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">住所</label>

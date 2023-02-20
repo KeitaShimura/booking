@@ -36,13 +36,6 @@ class Booking
         }
     }
 
-    public function show($id)
-    {
-        $statement = $this->PDO->prepare("SELECT * FROM bookings where id = :id");
-        $statement->bindParam(":id", $id);
-        return $statement->fetch();
-    }
-
     public function delete($id)
     {
         $statement = $this->PDO->prepare("DELETE FROM bookings WHERE id = :id");

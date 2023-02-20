@@ -83,11 +83,6 @@ class BookingController
         return  mb_strlen($str) <= $count;
       }
 
-    public function show($id)
-    {
-        return $this->model->show($id);
-    }
-
     public function delete($id)
     {
         $this->model->delete($id);
