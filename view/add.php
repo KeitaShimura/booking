@@ -12,38 +12,6 @@ session_start();
 $token = bin2hex(openssl_random_pseudo_bytes(24));
 $_SESSION['token'] = $token;
 
-if(isset($_POST['name'])){
-	$name = $_POST['name'];
-}
-
-if(isset($_POST['phone'])){
-	$phone = $_POST['phone'];
-}
-
-if(isset($_POST['post_code'])){
-	$post_code = $_POST['post_code'];
-}
-
-if(isset($_POST['address'])){
-	$address = $_POST['address'];
-}
-
-if(isset($_POST['member'])){
-	$member = $_POST['member'];
-}
-
-if(isset($_POST['start'])){
-	$start = $_POST['start'];
-}
-
-if(isset($_POST['end'])){
-	$end = $_POST['end'];
-}
-
-if(isset($_POST['memo'])){
-	$memo = $_POST['memo'];
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -78,32 +46,32 @@ if(isset($_POST['memo'])){
 
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">お名前</label>
-                <input required type="text" maxlength="100" class="form-control" name="name" value="<?php echo($name); ?>">
+                <input required type="text" maxlength="100" class="form-control" name="name">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">電話番号 （例: 080-0000-0000 / 08011112222）</label>
-                <input required type="tel" maxlength="100" class="form-control" id="phone" name="phone" value="<?php echo($phone) ?>">
+                <input required type="tel" maxlength="100" class="form-control" id="phone" name="phone">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">郵便番号 （例: 000-0000 / 1112222）</label>
-                <input required type="text" maxlength="100" class="form-control" id="post_code" name="post_code" value="<?php echo($post_code) ?>">
+                <input required type="text" maxlength="100" class="form-control" id="post_code" name="post_code>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">住所</label>
-                <input required type="text" maxlength="100" class="form-control" id="address" name="address" value="<?php echo($address) ?>">
+                <input required type="text" maxlength="100" class="form-control" id="address" name="address">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">人数</label>
-                <input required type="number" min="1" class="form-control" id="member" name="member" value="<?php echo($member) ?>">
+                <input required type="number" min="1" class="form-control" id="member" name="member">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">日付</label>
-                <input required type="date"  class="form-control" id="start" name="start" value="<?php echo($start) ?>">
-                <input required type="date" class="form-control" id="end" name="end" value="<?php echo($end) ?>">
+                <input required type="date"  class="form-control" id="start" name="start">
+                <input required type="date" class="form-control" id="end" name="end">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">備考</label>
-                <textarea class="form-control" maxlength="1000" id="memo" name="memo" rows="3"><?php echo($memo) ?></textarea>
+                <textarea class="form-control" maxlength="1000" id="memo" name="memo" rows="3"></textarea>
             </div>
             <div style="text-align: center;">
                 <input type="submit" class="btn btn-success" value="送信">
