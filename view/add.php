@@ -11,7 +11,6 @@ session_start();
 
 $token = bin2hex(openssl_random_pseudo_bytes(24));
 $_SESSION['token'] = $token;
-
 ?>
 
 <!DOCTYPE html>
@@ -35,15 +34,14 @@ $_SESSION['token'] = $token;
 
         <form name="contact" method="post" action="store.php" style="margin:50px 100px 0 100px;">
             <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_COMPAT, 'UTF-8'); ?>">
-            <?php foreach ($_SESSION['status'] as $error) : ?>
-                <?php if (isset($error)) : ?>
+            <?php if (isset($_SESSION['status'])) : ?>
+                <?php foreach ($_SESSION['status'] as $error) : ?>
                     <div class="alert alert-danger" role="alert">
                         <?php echo $error;
                         unset($_SESSION['status']); ?>
                     </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
-
+                <?php endforeach; ?>
+            <?php endif; ?>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">お名前</label>
                 <input required type="text" maxlength="100" class="form-control" name="name">
@@ -66,7 +64,7 @@ $_SESSION['token'] = $token;
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">日付</label>
-                <input required type="date"  class="form-control" id="start" name="start">
+                <input required type="date" class="form-control" id="start" name="start">
                 <input required type="date" class="form-control" id="end" name="end">
             </div>
             <div class="mb-3">
