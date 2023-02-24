@@ -11,6 +11,7 @@ session_start();
 
 $token = bin2hex(openssl_random_pseudo_bytes(24));
 $_SESSION['token'] = $token;
+
 ?>
 
 <!DOCTYPE html>
@@ -44,32 +45,32 @@ $_SESSION['token'] = $token;
             <?php endif; ?>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">お名前</label>
-                <input required type="text" maxlength="100" class="form-control" name="name">
+                <input required type="text" maxlength="100" class="form-control" name="name" value="<?php if(isset($_POST['name'])){ echo $_POST['name'];} ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">電話番号 （例: 080-0000-0000 / 08011112222）</label>
-                <input required type="tel" maxlength="100" class="form-control" id="phone" name="phone">
+                <input required type="tel" maxlength="100" class="form-control" id="phone" name="phone" value="<?php if(isset($_POST['phone'])){ echo $_POST['phone'];} ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">郵便番号 （例: 000-0000 / 1112222）</label>
-                <input required type="text" maxlength="100" class="form-control" id="post_code" name="post_code">
+                <input required type="text" maxlength="100" class="form-control" id="post_code" name="post_code" value="<?php if(isset($_POST['post_code'])){ echo $_POST['post_code'];} ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">住所</label>
-                <input required type="text" maxlength="100" class="form-control" id="address" name="address">
+                <input required type="text" maxlength="100" class="form-control" id="address" name="address" value="<?php if(isset($_POST['address'])){ echo $_POST['address'];} ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">人数</label>
-                <input required type="number" min="1" class="form-control" id="member" name="member">
+                <input required type="number" min="1" class="form-control" id="member" name="member" value="<?php if(isset($_POST['member'])){ echo $_POST['member'];} ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">日付</label>
-                <input required type="date" class="form-control" id="start" name="start">
-                <input required type="date" class="form-control" id="end" name="end">
+                <input required type="date" class="form-control" id="start" name="start" value="<?php if(isset($_POST['start'])){ echo $_POST['start'];} ?>">
+                <input required type="date" class="form-control" id="end" name="end" value="<?php if(isset($_POST['end'])){ echo $_POST['end'];} ?>">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">備考</label>
-                <textarea class="form-control" maxlength="1000" id="memo" name="memo" rows="3"></textarea>
+                <textarea class="form-control" maxlength="1000" id="memo" name="memo" rows="3"><?php if(isset($_POST['memo'])){ echo $_POST['memo'];} ?></textarea>
             </div>
             <div style="text-align: center;">
                 <input type="submit" class="btn btn-success" value="送信">
